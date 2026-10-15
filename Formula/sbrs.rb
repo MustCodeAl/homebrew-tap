@@ -1,8 +1,8 @@
 class Sbrs < Formula
   desc "SeleniumBase for Rust: browser automation and testing CLI, plus an MCP server"
   homepage "https://github.com/MustCodeAl/seleniumbase-rs"
-  url "https://github.com/MustCodeAl/seleniumbase-rs/archive/refs/tags/v0.2.0.tar.gz"
-  sha256 "316edcadf8bce56ffeff71e20e14e0f1786dba0c2a171db6055424baa2d2e91c"
+  url "https://github.com/MustCodeAl/seleniumbase-rs/archive/refs/tags/v0.3.0.tar.gz"
+  sha256 "18accd0b7d300d687fd3b79c4465a440a02523d3473a2971946700ba46e4890d"
   license "MIT"
   head "https://github.com/MustCodeAl/seleniumbase-rs.git", branch: "main"
 
