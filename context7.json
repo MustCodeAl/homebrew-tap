@@ -1,0 +1,20 @@
+{
+  "$schema": "https://context7.com/schema/context7.json",
+  "projectTitle": "Homebrew tap for seleniumbase-rs",
+  "description": "Homebrew tap for seleniumbase-rs, a Rust port of SeleniumBase for browser automation and testing. Its formula sbrs builds the sbrs command-line tool and the sbrs-mcp MCP server from the release source and installs shell completions (bash, zsh, fish, PowerShell), a Fig spec, a usage spec and Warp Workflows.",
+  "branch": "main",
+  "excludeFolders": [".github", ".claude"],
+  "excludeFiles": ["CHANGELOG.md", "CLAUDE.md", "AGENTS.md", "COPILOT.md", "LICENSE"],
+  "rules": [
+    "Install the sbrs CLI and the sbrs-mcp MCP server with Homebrew: brew install mustcodeal/tap/sbrs. The tap is the GitHub repository MustCodeAl/homebrew-tap; its only formula is Formula/sbrs.rb.",
+    "The formula builds the release tag named in its url line (currently v0.3.0) from source with Homebrew's rust; there is no prebuilt bottle. Update with brew upgrade sbrs; brew install --HEAD mustcodeal/tap/sbrs builds the main branch.",
+    "Two binaries land on PATH: sbrs (the CLI) and sbrs-mcp (the MCP server, built with the mcp-server feature). sbrs --version prints the version and sbrs doctor checks the environment.",
+    "To use sbrs-mcp from an MCP client, register command sbrs-mcp with args [\"--server\", \"cdp\"] (stdio). --server takes cdp (driverless Chrome), driver or sb (the default). SB_MCP_OUTPUT_DIR sets where tools write screenshots and downloads.",
+    "Homebrew installs no browser or driver. sbrs drives an installed Chrome, Edge or Firefox and downloads the matching chromedriver, msedgedriver or geckodriver when a session starts; sbrs install fetches one ahead. The cdp server needs no driver.",
+    "sbrs completions <shell> prints a script for bash, zsh, fish, elvish or powershell; fig prints a Fig spec and usage a usage (KDL) spec. The formula installs completions for bash, zsh, fish and PowerShell.",
+    "Also installed under $(brew --prefix)/share/sbrs: fig/sbrs.ts, usage/sbrs.usage.kdl and warp-workflows/*.yaml. Copy the workflows to ~/.warp/workflows to see them in Warp's command palette.",
+    "The Homebrew build enables only the mcp-server feature, so sbrs commander (needs tui) exits with status 2 and a hint. Build from the seleniumbase-rs git repository with --features tui to get it.",
+    "To use seleniumbase-rs as a Rust library, depend on the git repository (it is not on crates.io): seleniumbase-rs = { git = \"https://github.com/MustCodeAl/seleniumbase-rs\", tag = \"v0.3.0\" }; it needs Rust 1.99.",
+    "This tap holds only the formula, README and LICENSE. How to use sbrs and the library (BaseCase, sb_cdp, importers, tutorials) is documented in https://github.com/MustCodeAl/seleniumbase-rs (docs/ and README)."
+  ]
+}
