@@ -2,6 +2,7 @@
 
 [SeleniumBase for Rust](https://github.com/MustCodeAl/seleniumbase-rs): browser
 automation and testing from Rust, with the `sbrs` CLI and the `sbrs-mcp` MCP server.
+Documentation: <https://mustcodeal-seleniumbase-rs.docs7.io>
 
 ```bash
 brew install mustcodeal/tap/sbrs
