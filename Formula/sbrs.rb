@@ -1,15 +1,17 @@
 class Sbrs < Formula
   desc "SeleniumBase for Rust: browser automation and testing CLI, plus an MCP server"
   homepage "https://github.com/MustCodeAl/seleniumbase-rs"
-  url "https://github.com/MustCodeAl/seleniumbase-rs/archive/refs/tags/v0.4.0.tar.gz"
-  sha256 "abe0729a34db2b2424371a1b9810711d1ecb83b1afcf324c7649d36ccb98adac"
+  url "https://github.com/MustCodeAl/seleniumbase-rs/archive/refs/tags/v0.5.0.tar.gz"
+  sha256 "fa9ea22a37870752b45ecad203dec99bd5b5cacb5b5ac82a2013afadd0139731"
   license "MIT"
   head "https://github.com/MustCodeAl/seleniumbase-rs.git", branch: "main"
 
   depends_on "rust" => :build
 
   def install
-    system "cargo", "install", *std_cargo_args, "--features", "mcp-server"
+    # The binaries are the workspace crate crates/cli; its default features are
+    # pdf, mcp-server and plugins-builtin (the built-in plugins).
+    system "cargo", "install", *std_cargo_args(path: "crates/cli")
 
     # Shell completions; Warp uses them through its native shell completions.
     generate_completions_from_executable(bin/"sbrs", "completions", shells: [:bash, :zsh, :fish, :pwsh])
@@ -37,7 +39,8 @@ class Sbrs < Formula
 
   test do
     assert_match version.to_s, shell_output("#{bin}/sbrs --version")
-    assert_match "mkfile", shell_output("#{bin}/sbrs completions zsh")
+    assert_match "mkfile", shell_output("#{bin}/sbrs completions usage")
+    assert_match "shield", shell_output("#{bin}/sbrs plugin list")
     assert_match "Fig.Spec", shell_output("#{bin}/sbrs completions fig")
   end
 end
