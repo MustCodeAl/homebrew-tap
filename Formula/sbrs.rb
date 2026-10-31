@@ -10,7 +10,7 @@ class Sbrs < Formula
 
   def install
     # The binaries are the workspace crate crates/cli; its default features are
-    # pdf, mcp-server and plugins-builtin (the built-in plugins).
+    # pdf, mcp-server, mcp-client and plugins-builtin (the built-in plugins).
     system "cargo", "install", *std_cargo_args(path: "crates/cli")
 
     # Shell completions; Warp uses them through its native shell completions.
