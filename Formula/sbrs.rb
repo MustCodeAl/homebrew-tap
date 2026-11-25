@@ -1,8 +1,8 @@
 class Sbrs < Formula
   desc "SeleniumBase for Rust: browser automation and testing CLI, plus an MCP server"
   homepage "https://github.com/MustCodeAl/seleniumbase-rs"
-  url "https://github.com/MustCodeAl/seleniumbase-rs/archive/refs/tags/v0.8.0.tar.gz"
-  sha256 "04bfef06f5120db85f325d1883428d9b5307a2fe11f21a8a72c512afda61288f"
+  url "https://github.com/MustCodeAl/seleniumbase-rs/archive/refs/tags/v0.9.3.tar.gz"
+  sha256 "343421dd32fb00b06d134d5d4ec84df951162de05b5ad6e015522ac03024a3a0"
   license "MIT"
   head "https://github.com/MustCodeAl/seleniumbase-rs.git", branch: "main"
 
@@ -15,6 +15,9 @@ class Sbrs < Formula
 
     # Shell completions; Warp uses them through its native shell completions.
     generate_completions_from_executable(bin/"sbrs", "completions", shells: [:bash, :zsh, :fish, :pwsh])
+
+    # Man pages for sbrs and sbrs-mcp.
+    man1.install "man/man1/sbrs.1", "man/man1/sbrs-mcp.1"
 
     # The Fig spec (Warp's built-in specs, inshellisense, Amazon Q), the usage spec
     # (jdx/usage, mise) and Warp Workflows.
@@ -42,5 +45,6 @@ class Sbrs < Formula
     assert_match "mkfile", shell_output("#{bin}/sbrs completions usage")
     assert_match "shield", shell_output("#{bin}/sbrs plugin list")
     assert_match "Fig.Spec", shell_output("#{bin}/sbrs completions fig")
+    assert_match ".TH SBRS", shell_output("#{bin}/sbrs completions man")
   end
 end
